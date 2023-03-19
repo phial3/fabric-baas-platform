@@ -34,7 +34,7 @@ public class AdminConfiguration {
     public CommandLineRunner adminPasswordInitializer() {
         return args -> {
             Optional<UserEntity> adminOptional = userRepo.findById(defaultUsername);
-            if (adminOptional.isEmpty()) {
+            if (!adminOptional.isPresent()) {
                 log.info("正在初始化管理员信息...");
                 String encodedPassword = passwordEncoder.encode(defaultPassword);
                 List<String> authorities = Collections.singletonList(Authority.ADMIN);

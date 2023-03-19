@@ -20,8 +20,32 @@ import java.util.List;
 public class SwaggerConfiguration {
     @Bean
     public Docket createRestApi() {
-        return new Docket(DocumentationType.OAS_30)
+//        Docket docket=new Docket(DocumentationType.SWAGGER_2)
+//                .apiInfo(apiInfo())
+//                .select()
+//                //RequestHandlerSelectors配置要烧苗接口的方式
+//                //basePackage()指定要扫描的包
+//                //any()扫描全部
+//                //none()不扫描
+//                //withClassAnnotation()扫描类上的注解，参数是一个注解的反射对象
+//                //withMethodAnnotation()扫描方法上的注解
+//                .apis(RequestHandlerSelectors.basePackage("com.example.swagger.controller"))
+//                //paths()过滤什么路径
+//                .paths(PathSelectors.ant("/hello/**"))
+//                .build();
+//
+
+//        Docket docket=new Docket(DocumentationType.SWAGGER_2)
+//                .apiInfo(apiInfo())
+//                .enable(true)//表示是否使用Swagger,如果为false,则Swagger不能再浏览器中访问
+//                .select()
+//                .apis(RequestHandlerSelectors.basePackage("com.example.swagger.controller"))
+//                .build();
+//
+
+        return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .enable(true)
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())

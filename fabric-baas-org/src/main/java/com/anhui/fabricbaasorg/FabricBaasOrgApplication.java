@@ -7,7 +7,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(scanBasePackages = {"com.anhui"})
-@EnableMongoRepositories(basePackages = {"com.anhui.fabricbaasorg", "com.anhui.fabricbaascommon"})
+@EnableMongoRepositories(basePackages = {
+        "com.anhui.fabricbaasorg",
+        "com.anhui.fabricbaascommon"
+})
 @EnableScheduling
 @EnableTransactionManagement
 public class FabricBaasOrgApplication {

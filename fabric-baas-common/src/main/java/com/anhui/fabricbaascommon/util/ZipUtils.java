@@ -1,12 +1,15 @@
 package com.anhui.fabricbaascommon.util;
 
+import cn.hutool.core.io.IoUtil;
 import cn.hutool.core.lang.Assert;
+import org.apache.commons.io.IOUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tools.zip.ZipEntry;
 import org.apache.tools.zip.ZipFile;
 import org.apache.tools.zip.ZipOutputStream;
 
 import java.io.*;
+import java.nio.file.Files;
 import java.util.Enumeration;
 
 public class ZipUtils {
@@ -27,9 +30,9 @@ public class ZipUtils {
                     handle(zip, zipOut, file, path + src.getName());
                 }
             } else {
-                InputStream inputStream = new FileInputStream(src);
+                InputStream inputStream = Files.newInputStream(src.toPath());
                 zipOut.putNextEntry(new ZipEntry(path + src.getName()));
-                byte[] bytes = inputStream.readAllBytes();
+                byte[] bytes = IoUtil.readBytes(inputStream);
                 zipOut.write(bytes);
                 inputStream.close();
                 zipOut.closeEntry();
@@ -79,8 +82,8 @@ public class ZipUtils {
                     boolean mkdirs = parent.mkdirs();
                 }
                 try (InputStream inputStream = zipFile.getInputStream(entry);
-                     OutputStream outputStream = new FileOutputStream(file)) {
-                    byte[] bytes = inputStream.readAllBytes();
+                     OutputStream outputStream = Files.newOutputStream(file.toPath())) {
+                    byte[] bytes = IoUtil.readBytes(inputStream);
                     outputStream.write(bytes);
                     outputStream.flush();
                 }

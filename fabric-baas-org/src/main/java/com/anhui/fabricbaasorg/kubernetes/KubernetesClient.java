@@ -121,7 +121,7 @@ public class KubernetesClient {
                 log.warn("命令未能在规定时间内结束！");
             }
         }
-        return out.toString(StandardCharsets.UTF_8);
+        return out.toString(StandardCharsets.UTF_8.displayName());
     }
 
 

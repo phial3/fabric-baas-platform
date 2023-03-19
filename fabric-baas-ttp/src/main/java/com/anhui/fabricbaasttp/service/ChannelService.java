@@ -59,7 +59,7 @@ public class ChannelService {
 
     public ChannelEntity findChannelOrThrowEx(String channelName) throws ChannelException {
         Optional<ChannelEntity> channelOptional = channelRepo.findById(channelName);
-        if (channelOptional.isEmpty()) {
+        if (!channelOptional.isPresent()) {
             throw new ChannelException("未找到相应名称的通道：" + channelName);
         }
         return channelOptional.get();

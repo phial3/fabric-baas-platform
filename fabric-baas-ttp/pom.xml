@@ -1,28 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>fabric-baas-platform</artifactId>
         <groupId>com.anhui</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
+
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>fabric-baas-ttp</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>fabric-baas-ttp</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
+
+
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <skipTests>true</skipTests>
     </properties>
+
+
     <dependencies>
         <!-- 项目子模块 -->
         <dependency>
             <groupId>com.anhui</groupId>
             <artifactId>fabric-baas-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
+
         <dependency>
             <groupId>org.jetbrains</groupId>
             <artifactId>annotations</artifactId>
@@ -30,8 +37,12 @@
             <scope>compile</scope>
         </dependency>
 
-        <!-- 第三方依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+        </dependency>
     </dependencies>
+
 
     <build>
         <finalName>fabric-baas-ttp</finalName>

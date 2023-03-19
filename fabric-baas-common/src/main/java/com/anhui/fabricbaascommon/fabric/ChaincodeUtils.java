@@ -7,6 +7,7 @@ import com.anhui.fabricbaascommon.exception.CertfileException;
 import com.anhui.fabricbaascommon.exception.ChaincodeException;
 import com.anhui.fabricbaascommon.util.CommandUtils;
 import com.anhui.fabricbaascommon.util.MyFileUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import java.io.File;
 import java.io.IOException;
@@ -38,7 +39,7 @@ public class ChaincodeUtils {
         String cmd = String.format("peer lifecycle chaincode querycommitted -C %s | grep 'Name:'", channelName);
         String str = CommandUtils.exec(envs, "sh", "-c", cmd);
         List<ApprovedChaincode> approvedChaincodes = new ArrayList<>();
-        if (str.isBlank()) {
+        if (StringUtils.isBlank(str)) {
             return approvedChaincodes;
         }
         if (!str.startsWith("Name: ")) {
@@ -88,7 +89,7 @@ public class ChaincodeUtils {
 
         String str = CommandUtils.exec(envs, "sh", "-c", "peer lifecycle chaincode queryinstalled | grep 'Package ID:'");
         List<InstalledChaincode> installedChaincodes = new ArrayList<>();
-        if (str.isBlank()) {
+        if (StringUtils.isBlank(str)) {
             return installedChaincodes;
         }
         if (!str.startsWith("Package ID: ")) {
@@ -100,7 +101,7 @@ public class ChaincodeUtils {
         String[] outputLines = str.split("\n");
         for (String outputLine : outputLines) {
             InstalledChaincode installedChaincode = new InstalledChaincode();
-            String[] parts = outputLine.strip().split(", ");
+            String[] parts = outputLine.trim().split(", ");
             Assert.isTrue(parts[0].startsWith("Package ID: "));
             Assert.isTrue(parts[1].startsWith("Label: "));
             installedChaincode.setIdentifier(parts[0].replaceFirst("Package ID: ", ""));
@@ -140,7 +141,7 @@ public class ChaincodeUtils {
         if (newInstalledChaincodes.size() == oldInstalledChaincodes.size() || !str.toLowerCase().contains("chaincode code package identifier")) {
             throw new ChaincodeException("链码安装失败：" + chaincodePackage);
         }
-        return str.substring(str.lastIndexOf(" ") + 1).strip();
+        return str.substring(str.lastIndexOf(" ") + 1).trim();
     }
 
     /**
@@ -231,7 +232,7 @@ public class ChaincodeUtils {
             }
             if (approval != null) {
                 ChaincodeApproval chaincodeApproval = new ChaincodeApproval();
-                String orgName = line.strip().split(": ")[0];
+                String orgName = line.trim().split(": ")[0];
                 chaincodeApproval.setApproved(approval);
                 chaincodeApproval.setOrganizationName(orgName);
                 chaincodeApprovals.add(chaincodeApproval);
@@ -371,6 +372,6 @@ public class ChaincodeUtils {
         if (str.toLowerCase().contains("error: ") || str.contains("status:500")) {
             throw new ChaincodeException("链码调用失败：" + str);
         }
-        return str.strip();
+        return str.trim();
     }
 }

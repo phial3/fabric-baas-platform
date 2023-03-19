@@ -33,7 +33,7 @@ public class FabricConfiguration {
         return args -> {
             log.info("正在检查CA管理员信息...");
             Optional<CertfileEntity> adminCertfileOptional = certfileRepo.findById(caRootUsername);
-            if (adminCertfileOptional.isEmpty()) {
+            if (!adminCertfileOptional.isPresent()) {
                 log.info("正在初始化CA管理员信息...");
                 CertfileEntity certfile = new CertfileEntity(caRootUsername, caRootPassword, CertfileType.ADMIN);
                 certfileRepo.save(certfile);

@@ -57,7 +57,7 @@ public class OrganizationService {
 
     public void setPassword(String organizationName, String newPassword) throws OrganizationException {
         Optional<UserEntity> optional = userRepo.findById(organizationName);
-        if (optional.isEmpty()) {
+        if (!optional.isPresent()) {
             throw new OrganizationException("不存在组织：" + organizationName);
         }
         UserEntity organization = optional.get();
@@ -150,7 +150,7 @@ public class OrganizationService {
     @Transactional
     public void handleRegistration(String organizationName, boolean isAllowed) throws Exception {
         Optional<RegistrationEntity> registrationOptional = findUnhandledRegistration(organizationName);
-        if (registrationOptional.isEmpty()) {
+        if (!registrationOptional.isPresent()) {
             throw new RegistrationException("该组织不存在未处理的注册申请");
         }
         RegistrationEntity registration = registrationOptional.get();

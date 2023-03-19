@@ -73,7 +73,7 @@ public class PeerService {
 
     public PeerEntity findPeerOrThrowEx(String peerName) throws NodeException {
         Optional<PeerEntity> peerOptional = peerRepo.findById(peerName);
-        if (peerOptional.isEmpty()) {
+        if (!peerOptional.isPresent()) {
             throw new NodeException("未找到相应的Peer节点：" + peerName);
         }
         return peerOptional.get();

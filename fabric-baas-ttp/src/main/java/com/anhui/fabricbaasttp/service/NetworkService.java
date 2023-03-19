@@ -92,7 +92,7 @@ public class NetworkService {
      */
     public NetworkEntity findNetworkOrThrowEx(String networkName) throws NetworkException {
         Optional<NetworkEntity> networkOptional = networkRepo.findById(networkName);
-        if (networkOptional.isEmpty()) {
+        if (!networkOptional.isPresent()) {
             throw new NetworkException("不存在相应名称的网络");
         }
         return networkOptional.get();
@@ -111,7 +111,7 @@ public class NetworkService {
 
     public ParticipationEntity findUnhandledParticipationOrThrowEx(String networkName, String organizationName) throws ParticipationException {
         Optional<ParticipationEntity> participationOptional = participationRepo.findFirstByNetworkNameAndOrganizationNameAndStatus(networkName, organizationName, ApplStatus.UNHANDLED);
-        if (participationOptional.isEmpty()) {
+        if (!participationOptional.isPresent()) {
             throw new ParticipationException("该组织不存在待处理的加入网络申请：" + organizationName);
         }
         return participationOptional.get();

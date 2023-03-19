@@ -1,35 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>fabric-baas-platform</artifactId>
         <groupId>com.anhui</groupId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>0.0.1</version>
     </parent>
 
+    <modelVersion>4.0.0</modelVersion>
     <artifactId>fabric-baas-org</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>fabric-baas-org</name>
     <description>Demo project for Spring Boot</description>
     <packaging>jar</packaging>
+
+
     <properties>
-        <java.version>11</java.version>
+        <java.version>8</java.version>
         <skipTests>true</skipTests>
     </properties>
+
+
     <dependencies>
         <!-- 项目子模块 -->
         <dependency>
             <groupId>com.anhui</groupId>
             <artifactId>fabric-baas-common</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>0.0.1</version>
         </dependency>
 
         <!-- 第三方依赖 -->
         <dependency>
             <groupId>io.fabric8</groupId>
             <artifactId>kubernetes-client</artifactId>
-            <version>5.12.2</version>
+            <version>5.7.4</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.github.classgraph/classgraph -->
+        <dependency>
+            <groupId>io.github.classgraph</groupId>
+            <artifactId>classgraph</artifactId>
+            <version>4.8.157</version>
         </dependency>
 
     </dependencies>

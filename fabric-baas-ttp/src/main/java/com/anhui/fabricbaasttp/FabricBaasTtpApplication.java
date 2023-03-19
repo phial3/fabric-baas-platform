@@ -6,7 +6,10 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication(scanBasePackages = {"com.anhui"})
-@EnableMongoRepositories(basePackages = {"com.anhui.fabricbaasttp", "com.anhui.fabricbaascommon"})
+@EnableMongoRepositories(basePackages = {
+        "com.anhui.fabricbaasttp",
+        "com.anhui.fabricbaascommon"
+})
 @EnableTransactionManagement
 public class FabricBaasTtpApplication {
 
