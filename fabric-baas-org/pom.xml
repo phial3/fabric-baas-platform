@@ -34,7 +34,7 @@
         <dependency>
             <groupId>io.fabric8</groupId>
             <artifactId>kubernetes-client</artifactId>
-            <version>5.7.4</version>
+            <version>6.5.0</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/io.github.classgraph/classgraph -->

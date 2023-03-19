@@ -42,9 +42,11 @@ public class NetworkController {
     @PostMapping("/createNetwork")
     @ApiOperation("创建网络")
     public ResourceResult createNetwork(@Valid @RequestPart NetworkCreateRequest request,
-                                        @ApiParam(value = "CA管理员的证书压缩包（包含msp和tls两个文件夹）") @RequestPart MultipartFile adminCertZip) throws Exception {
+                                        @ApiParam(value = "CA管理员的证书压缩包（包含msp和tls两个文件夹）")
+                                        @RequestPart MultipartFile adminCertZip) throws Exception {
         String currentOrganizationName = SecurityUtils.getUsername();
-        String sysChannelGenesisDownloadUrl = networkService.createNetwork(currentOrganizationName, request.getNetworkName(), request.getConsortiumName(), request.getOrderers(), adminCertZip);
+        String sysChannelGenesisDownloadUrl = networkService.createNetwork(currentOrganizationName, request.getNetworkName(),
+                request.getConsortiumName(), request.getOrderers(), adminCertZip);
         return new ResourceResult(sysChannelGenesisDownloadUrl);
     }
 

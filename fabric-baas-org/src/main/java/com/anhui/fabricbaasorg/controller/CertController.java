@@ -36,7 +36,6 @@ public class CertController {
     @ApiOperation("条件查询证书")
     public PageResult<CertfileEntity> query(@Valid @RequestBody CertQueryRequest request) throws Exception {
         return certService.query(request.getUsertype(), request.getPage(), request.getPageSize());
-
     }
 }
 

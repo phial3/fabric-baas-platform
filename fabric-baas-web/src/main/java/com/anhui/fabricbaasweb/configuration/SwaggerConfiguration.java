@@ -1,11 +1,13 @@
 package com.anhui.fabricbaasweb.configuration;
 
 import io.swagger.annotations.ApiOperation;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.builders.ApiInfoBuilder;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.oas.annotations.EnableOpenApi;
 import springfox.documentation.service.*;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spi.service.contexts.SecurityContext;
@@ -15,9 +17,27 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-// @PropertySource("classpath:fabricbaasweb.properties")
+// @PropertySource("classpath:application.yaml")
 @Configuration
+@EnableOpenApi
 public class SwaggerConfiguration {
+    // 自定义当前文档的标题
+    @Value("${swagger.title}")
+    private String title;
+    // 自定义当前文档的详细描述
+    @Value("${swagger.description}")
+    private String description;
+    // 自定义当前文档的版本
+    @Value("${swagger.version}")
+    private String version;
+    //自定义作者的信息，包括作者名字、个人主页、邮箱等相关信息
+    @Value("${swagger.name}")
+    private String name;
+    @Value("${swagger.url}")
+    private String url;
+    @Value("${swagger.email}")
+    private String email;
+
     @Bean
     public Docket createRestApi() {
 //        Docket docket=new Docket(DocumentationType.SWAGGER_2)
@@ -35,30 +55,24 @@ public class SwaggerConfiguration {
 //                .build();
 //
 
-//        Docket docket=new Docket(DocumentationType.SWAGGER_2)
-//                .apiInfo(apiInfo())
-//                .enable(true)//表示是否使用Swagger,如果为false,则Swagger不能再浏览器中访问
-//                .select()
-//                .apis(RequestHandlerSelectors.basePackage("com.example.swagger.controller"))
-//                .build();
-//
-
+        // 为swagger设置jwt
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .enable(true)
+                .securitySchemes(securitySchemes())
+                .securityContexts(securityContexts())
                 .select()
                 .apis(RequestHandlerSelectors.withMethodAnnotation(ApiOperation.class))
                 .paths(PathSelectors.any())
-                .build()
-                .securitySchemes(securitySchemes())
-                .securityContexts(securityContexts());
+                .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Fabric BaaS Platform")
-                .description("Restful API Doc")
-                .version("1.0")
+                .title(title)
+                .description(description)
+                .version(version)
+                .contact(new Contact(name, url, email))
                 .build();
     }
 

@@ -1,0 +1,12 @@
+swagger:
+  name: Fabic-Baas-Platform
+  title: Fabic-Baas RestFul APi
+  description: Fabic-Baas RestFul APi Documents
+  version: v1
+  url: https://blog.csdn.net/qq_53860947?type=blog
+  email: 7758258@qq.com
+
+spring:
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
