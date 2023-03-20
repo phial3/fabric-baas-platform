@@ -17,6 +17,9 @@ public class JwtUtils {
     private final String secret;
     private final String header;
 
+    private final String USER_NAME = "username";
+    private final String AUTHORITIES = "authorities";
+
     /**
      * @param authorities 权限列表
      * @return 包含所有权限名称的字符串（用逗号分隔开）
@@ -35,8 +38,8 @@ public class JwtUtils {
      */
     public String generateToken(UserDetails userDetails) {
         Map<String, Object> claims = new HashMap<>(2);
-        claims.put("username", userDetails.getUsername());
-        claims.put("authorities", convertAuthoritiesToString(userDetails.getAuthorities()));
+        claims.put(USER_NAME, userDetails.getUsername());
+        claims.put(AUTHORITIES, convertAuthoritiesToString(userDetails.getAuthorities()));
 
         return Jwts.builder()
                 .setClaims(claims)
@@ -71,8 +74,8 @@ public class JwtUtils {
     public Boolean validateToken(String token, UserDetails userDetails) {
         Claims claims = getClaimsFromToken(token);
         Date expiration = claims.getExpiration();
-        String username = (String) claims.get("username");
-        String authorities = (String) claims.get("authorities");
+        String username = (String) claims.get(USER_NAME);
+        String authorities = (String) claims.get(AUTHORITIES);
         return expiration.after(new Date()) &&
                 username.equals(userDetails.getUsername()) &&
                 authorities.equals(convertAuthoritiesToString(userDetails.getAuthorities()));
@@ -83,7 +86,7 @@ public class JwtUtils {
      */
     public String getUsernameFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
-        return (String) claims.get("username");
+        return (String) claims.get(USER_NAME);
     }
 
     /**
@@ -91,7 +94,7 @@ public class JwtUtils {
      */
     public String[] getAuthorityNamesFromToken(String token) {
         Claims claims = getClaimsFromToken(token);
-        String authorities = (String) claims.get("authorities");
+        String authorities = (String) claims.get(AUTHORITIES);
         return authorities.split(",");
     }
 }

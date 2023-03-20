@@ -7,9 +7,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 // @PropertySource("classpath:application.yaml")
+@Data
 @Configuration
 @ConfigurationProperties(prefix = "jwt")
-@Data
 public class JwtUtilsConfiguration {
     private String header;
     private String secret;

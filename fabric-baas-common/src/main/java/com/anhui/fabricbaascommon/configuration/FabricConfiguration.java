@@ -15,10 +15,10 @@ import java.util.Optional;
 
 
 // @PropertySource("classpath:fabricbaascommon.properties")
+@Slf4j
+@Data
 @Configuration
 @ConfigurationProperties(prefix = "fabric")
-@Data
-@Slf4j
 public class FabricConfiguration {
     private String systemChannelName;
     private String caRootUsername;
@@ -38,6 +38,7 @@ public class FabricConfiguration {
                 CertfileEntity certfile = new CertfileEntity(caRootUsername, caRootPassword, CertfileType.ADMIN);
                 certfileRepo.save(certfile);
             }
+            log.info("检查CA管理员信息完成！");
         };
     }
 }

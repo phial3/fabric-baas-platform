@@ -10,3 +10,9 @@ spring:
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
+
+context:
+  listener:
+    classes:
+      - com.anhui.fabricbaasweb.listener.ThridListener
+      - com.anhui.fabricbaasweb.listener.FourthListener
