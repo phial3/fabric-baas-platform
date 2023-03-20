@@ -50,9 +50,7 @@ public class ChannelUtils {
         return info;
     }
 
-    public static void joinChannel(
-            CoreEnv coreEnv,
-            File channelGenesisBlock)
+    public static void joinChannel(CoreEnv coreEnv, File channelGenesisBlock)
             throws IOException, ChannelException, InterruptedException {
         Assert.isTrue(channelGenesisBlock.exists());
         Map<String, String> envs = CommandUtils.buildEnvs(
@@ -69,10 +67,7 @@ public class ChannelUtils {
         }
     }
 
-    public static void fetchConfig(
-            CoreEnv coreEnv,
-            String channelName,
-            File jsonConfig)
+    public static void fetchConfig(CoreEnv coreEnv, String channelName, File jsonConfig)
             throws ChannelException, IOException, InterruptedException {
         Map<String, String> envs = CommandUtils.buildEnvs(
                 "FABRIC_CFG_PATH", MyFileUtils.getWorkingDir(),
@@ -101,10 +96,7 @@ public class ChannelUtils {
         }
     }
 
-    public static void fetchGenesisBlock(
-            CoreEnv coreEnv,
-            String channelName,
-            File genesisBlock)
+    public static void fetchGenesisBlock(CoreEnv coreEnv, String channelName, File genesisBlock)
             throws ChannelException, IOException, InterruptedException {
         Map<String, String> envs = CommandUtils.buildEnvs(
                 "FABRIC_CFG_PATH", MyFileUtils.getWorkingDir(),

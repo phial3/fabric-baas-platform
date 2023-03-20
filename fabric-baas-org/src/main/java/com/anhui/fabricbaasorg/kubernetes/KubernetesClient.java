@@ -12,6 +12,7 @@ import org.apache.commons.io.FileUtils;
 
 import java.io.*;
 import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.CountDownLatch;
@@ -44,7 +45,7 @@ public class KubernetesClient {
      * 将编排文件定义的内容部署到集群中
      */
     public void applyYaml(File yaml) throws IOException {
-        apiClient.load(new FileInputStream(yaml))
+        apiClient.load(Files.newInputStream(yaml.toPath()))
                 .inNamespace(KUBERNETES_NAMESPACE)
                 .createOrReplace();
     }
@@ -54,7 +55,7 @@ public class KubernetesClient {
      * 目前只用到了Deployment和Service两种类型，所以暂时不去支持其他类。
      */
     public void deleteYaml(File yaml) throws IOException {
-        apiClient.load(new FileInputStream(yaml))
+        apiClient.load(Files.newInputStream(yaml.toPath()))
                 .inNamespace(KUBERNETES_NAMESPACE)
                 .delete();
     }
