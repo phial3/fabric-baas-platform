@@ -1866,3 +1866,11 @@ https://blog.csdn.net/lakersssss24/article/details/125762826
 https://ifantasy.net/2022/04/04/hyperledger_fabric_2_update_org/
 
 https://github.com/wefantasy/FabricLearn
+
+命令行手册:
+
+https://www.kancloud.cn/sunlidong/kala0313/1094549
+
+http://cw.hubwiz.com/card/c/fabric-command-manual/
+
+https://www.wenjiangs.com/doc/jllcvvuwj
