@@ -30,9 +30,7 @@ public class CommandUtils {
         log.info("执行命令：" + String.join(" ", cmd));
         ProcessBuilder builder = new ProcessBuilder(cmd);
         Map<String, String> environment = builder.environment();
-        for (Map.Entry<String, String> entry : envs.entrySet()) {
-            environment.put(entry.getKey(), entry.getValue());
-        }
+        environment.putAll(envs);
         log.info("环境变量：" + environment);
         Process process = builder.start();
         process.waitFor();
@@ -48,9 +46,7 @@ public class CommandUtils {
     public static Process asyncExec(Map<String, String> envs, String... cmd) throws IOException {
         ProcessBuilder builder = new ProcessBuilder(cmd);
         Map<String, String> environment = builder.environment();
-        for (Map.Entry<String, String> entry : envs.entrySet()) {
-            environment.put(entry.getKey(), entry.getValue());
-        }
+        environment.putAll(envs);
         return builder.start();
     }
 }

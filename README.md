@@ -1,7 +1,5 @@
 # 可信端接口说明
 
-
-
 ## 1 系统管理
 
 ### 1.1 管理员登录
@@ -1858,4 +1856,10 @@ commit完成后所有的组织的链码都会同时生效。
   }
 }
 ```
+
+fabric操纵参考资料：
+
+https://zhuanlan.zhihu.com/p/597711621
+
+https://blog.csdn.net/lakersssss24/article/details/125762826
 
